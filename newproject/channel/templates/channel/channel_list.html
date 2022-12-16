@@ -1,0 +1,16 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <h1>Channel list</h1>
+    {% csrf_token %}
+    <div class="channels">
+        {% for channel in channel %}
+            <div class="channel">
+                <h2><a href="{% url 'channel:detail' slug=channel.slug %}">{{channel.name}}</a></h2>
+                <p>{{channel.snippet}}</p>
+                <p>{{channel.date}}</p>
+                <p class="author">added by {{channel.author.username}}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

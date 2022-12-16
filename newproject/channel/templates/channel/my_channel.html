@@ -1,0 +1,31 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+    <h1>My Channel</h1>
+    {% csrf_token %}
+    <table class="table table-bordered">
+    <thead class="alert-warning">
+        <tr>
+            <th>Channel Name</th>
+            <th>Description</th>
+            <th>Last Update</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for channel in channel %}
+        <tr>
+            <td><a href="{% url 'channel:detail' slug=channel.slug %}">{{channel.name}}</a></td>
+            <td>{{ channel.snippet }}</td>
+            <td>{{ channel.date }}</td>
+            <td>
+                <center>
+                    <a href="{% url 'channel:update' channel.id %}" class="btn btn-warning" id = '{{channel.id}}'>edit</a>
+                    <a href="{% url 'channel:delete' channel.id %}" class="btn btn-danger" id = '{{channel.id}}'>delete</a>
+                </center>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'nav.html' %}
+
+{% block content %}
+
+    <section class="page-banner-area page-about">
+        <div class="overlay"></div>
+        <!-- Content -->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-md-12 col-12 text-center">
+                    <div class="page-banner-content">
+                        <h1 class="display-4 font-weight-bold">{{ channel.name }}</h1>
+                        <p>{{ channel.description }}</p>
+                        <p>{{ channel.soil }}</p>
+                        <p>{{ channel.location }}</p>
+                        <p>{{ channel.date }}</p>
+                    </div>
+                </div>
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+    </section>
+
+<br></br>
+
+    <section class="banner-area py-7">
+        <!-- Content -->
+        <div class="container">
+            <div class="row  align-items-center">
+                <div class="col-md-12 col-lg-7 text-center text-lg-left">
+                    <div class="main-banner">
+                        <!-- Heading -->
+                        <h1>Comments</h1>
+
+                        {% if not channel.comments.all %}
+                        No comment yet for this channel.
+
+                        {% else %}
+                            {% for comment in channel.comments.all %}
+                                <strong>
+                                    {{ comment.name }} - 
+                                    {{ comment.date_added }}
+                                </strong>
+                                <br/>
+                                {{ comment.body }}
+                                <br/>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="post" action=".">
+                            {% csrf_token %}
+
+                            {{ form.as_table }}
+
+                            <input type="submit" name="Add comment">
+
+
+                        </form>
+
+                    </div>
+                </div>
+
+                
+            </div> <!-- / .row -->
+        </div> <!-- / .container -->
+    </section>
+
+
+
+
+{% endblock %}

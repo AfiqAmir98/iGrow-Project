@@ -1,0 +1,123 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="it">
+  <meta name="keywords" content="Rapoo,creative, agency, startup,onepage, clean, modern,business, company,it">
+  
+  <meta name="author" content="themefisher.com">
+
+  <title>DetectGreen</title>
+
+  <!-- bootstrap.min css -->
+  <link rel="stylesheet" href="{% static 'index/plugins/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Animate Css -->
+  <link rel="stylesheet" href="{% static 'index/plugins/animate-css/animate.css' %}">
+  <!-- Icon Font css -->
+  <link rel="stylesheet" href="{% static 'index/plugins/fontawesome/css/all.css' %}">
+  <link rel="stylesheet" href="{% static 'index/plugins/fonts/Pe-icon-7-stroke.css' %}">
+  <!-- Themify icon Css -->
+  <link rel="stylesheet" href="{% static 'index/plugins/themify/css/themify-icons.css' %}">
+  <!-- Slick Carousel CSS -->
+  <link rel="stylesheet" href="{% static 'index/plugins/slick-carousel/slick/slick.css' %}">
+  <link rel="stylesheet" href="{% static 'index/plugins/slick-carousel/slick/slick-theme.css' %}">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="{% static 'index/css/style.css' %}">
+
+</head>
+
+
+<body id="top-header">
+<!-- LOADER TEMPLATE -->
+<div id="page-loader">
+    <div class="loader-icon fa fa-spin colored-border"></div>
+</div>
+ <!-- /LOADER TEMPLATE -->
+
+
+    <!-- NAVBAR
+    ================================================= -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary main-nav navbar-togglable rounded-radius">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <h3>DetectGreen</h3>
+            </a>
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars"></span>
+            </button>
+
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <!-- Links -->
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item ">
+                        <a href="{% url 'channel:list' %}" class="nav-link js-scroll-trigger">
+                            Channel
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{% url 'djangoRT:index' %}" class="nav-link js-scroll-trigger">
+                            Soil PH graph
+                        </a>
+                    </li>
+                    <li class="nav-item ">
+                        <a href="{% url 'about' %}" class="nav-link js-scroll-trigger">
+                            About
+                        </a>
+                    </li>
+
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                      <a href="{% url 'channel:create' %}" class="nav-link js-scroll-trigger">
+                          New Channel
+                      </a>
+                    </li>
+                    
+                    <ul class="ml-lg-auto list-unstyled m-0">
+                    <li>
+                    <form action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="btn btn-white btn-circled" type="submit">Logout</button>
+                    </form>
+                    </li>
+                    {% else %}
+                   <ul class="ml-lg-auto list-unstyled m-0">
+                        <li><a href="{% url 'accounts:login' %}" class="btn btn-white btn-circled">Login</a></li>
+                    </ul>
+                    {% endif %}
+                </ul>
+            </div> <!-- / .navbar-collapse -->
+        </div> <!-- / .container -->
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- 
+    Essential Scripts
+    =====================================-->
+
+    
+    <!-- Main jQuery -->
+    <script src="{% static 'index/plugins/jquery/jquery.min.js' %}"></script>
+    <!-- Bootstrap 3.1 -->
+    <script src="{% static 'index/plugins/bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'index/plugins/bootstrap/js/bootstrap.min.js' %}"></script>
+    <!-- Slick Slider -->
+    <script src="{% static 'index/plugins/slick-carousel/slick/slick.min.js' %}"></script>
+    <script src="{% static 'index/js/jquery.easing.1.3.js' %}"></script>
+    <!-- Map Js -->
+    <script src="{% static 'index/plugins/google-map/gmap3.min.js' %}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwIQh7LGryQdDDi-A603lR8NqiF3R_ycA"></script>
+
+    <script src="{% static 'index/js/form/contact.js' %}"></script>
+    <script src="{% static 'index/js/theme.js' %}"></script>
+
+  </body>
+  </html>
+   
